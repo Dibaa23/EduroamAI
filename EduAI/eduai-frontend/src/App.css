@@ -1,0 +1,441 @@
+* {
+  font-family: Lato, "Noto Sans", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #1e1e1e; /* Updated dark background */
+  font-family: Lato, "Noto Sans", sans-serif;
+  color: #E0E0E0; /* Updated light text for better clarity */
+  overflow: hidden; /* Prevent overall page scroll */
+  }
+
+  /* Override default Material-UI Typography font */
+.MuiTypography-root {
+  font-family: Lato, "Noto Sans", sans-serif !important;
+}
+
+  
+  .app-container {
+    display: flex;
+    height: 100vh;
+    padding-top: 60px;
+    overflow-y: hidden; /* Prevent main container scroll */
+  }
+
+  /* Card style for the summary */
+.summary-card {
+  background: linear-gradient(145deg, #2b2b2b, #000000) !important; /* Add linear gradient with !important */
+  color: #f5f5f5 !important; /* Light text color for contrast */
+  border-radius: 16px !important; /* More rounded corners for a modern look */
+  padding: 24px !important; /* Increase padding for more spacing */
+  box-shadow: 0 12px 24px rgb(0, 0, 0) !important; /* Increase shadow depth on hover for an interactive feel */
+  overflow-wrap: break-word; /* Ensure long text wraps correctly */
+  word-break: break-word; /* Handle unbreakable words */
+  margin-bottom: 24px; /* Add spacing at the bottom */
+  border: 1px solid #383838 !important; /* Subtle border for better definition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transition for hover effect */
+}
+  
+  .left-column {
+    width: 5%;
+  background-color: #171717; /* Maintain dark sidebar with slight update */
+  padding: 15px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 230;
+  border-right: 1px solid #383838; /* Subtle border to differentiate sidebar */
+  }
+
+/* Accordion Styles */
+.MuiAccordion-root {
+  background: linear-gradient(145deg, #2b2b2b, #1e1e1e); /* Soft gradient for a more attractive background */
+  color: #f5f5f5; /* Light text for contrast */
+  border-radius: 16px !important; /* Rounded corners for a modern look */
+  margin-bottom: 16px; /* Space between modules */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow */
+  overflow: hidden; /* Prevent content overflow */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition on hover */
+  cursor: pointer; /* Pointer cursor for clickable indication */
+}
+
+.MuiAccordion-root:hover {
+  transform: translateY(-4px); /* Slight lift effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Increased shadow depth */
+  border: 1px solid #3B82F6; /* Add accent color for border to show interactivity */
+}
+
+.MuiAccordionSummary-root {
+  background-color: #3b3b3b; /* Slightly lighter background to differentiate the header */
+  border-bottom: 1px solid #4d4d4d; /* Divider between header and content */
+  padding: 12px 20px; /* Improved padding for a comfortable clickable area */
+  border-radius: 16px 16px 0 0 !important; /* Rounded top corners */
+  transition: background-color 0.3s ease; /* Smooth background change */
+}
+
+/* Optionally style expanded state for a smooth appearance */
+.MuiAccordionSummary-root.Mui-expanded {
+  border-radius: 12px 12px 0 0 !important;
+  background-color: #80a1f4; /* Slightly darker color to indicate expansion */
+}
+
+.MuiAccordionDetails-root {
+  background-color: #2c2c2c; /* Dark background for content */
+  color: #d3d3d3; /* Slightly lighter text for readability */
+  padding: 20px; /* Add padding for content spacing */
+  border-radius: 0 0 16px 16px !important; /* Rounded bottom corners */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Add slight inset shadow for depth */
+}
+
+/* Additional styling for Material UI Paper elements if needed */
+.css-1j74uew-MuiPaper-root-MuiCard-root {
+  background-color: #121212 !important; /* Dark background */
+  color: #cccccc; /* Lighten text for visibility */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
+  padding: 20px; /* Inner padding */
+}
+
+/* Adjust the CardContent style */
+.css-1lt5qva-MuiCardContent-root {
+  background-color: transparent !important; /* Ensure transparent background */
+  color: #cccccc; /* Light text */
+}
+
+/* Adjustments for Accordion Content */
+.MuiAccordionDetails-root p {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.6; /* Comfortable line spacing for readability */
+  margin-bottom: 12px; /* Spacing between paragraphs */
+}
+  
+  .middle-column {
+    width: 55%;
+    padding: 20px;
+    overflow-y: auto; /* Enable internal scrolling for the study section */
+    margin-left: 5%;
+    background-color: #272727;
+    margin-top: 0%;
+    box-sizing: border-box; /* Include padding and border in element's total width */
+  }
+  
+  .right-column {
+    width: 33.33%;
+    background-color: #000000; /* Dark background */
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 250;
+    overflow-y: hidden; /* Prevent the reference window from scrolling */
+  }
+  
+  .video-player-container {
+    flex-basis: 33%; /* Takes 1/3 of the reference window */
+    height: calc(100vh / 3); /* Adjust height to 1/3 of the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E1E1E; /* Maintain dark theme consistency */
+  }
+
+  .MuiTypography-body1 {
+    font-size: 1rem;
+    color: #cccccc; /* Slightly lighter for body text */
+}
+    
+  .chatbot-container {
+    flex-grow: 1;
+    background-color: #2C2C2C; /* Darker background for chatbot */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100%;
+  }
+  
+  .messages-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: calc(100% - 60px);
+    padding: 10px;
+  }
+  
+  .messages-box::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .messages-box::-webkit-scrollbar-thumb {
+    background-color: #6b6b6b; /* Darker scrollbar */
+    border-radius: 4px;
+  }
+  
+  .messages-box::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3; /* Lighter on hover */
+  }
+  
+  .chatbot-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #2C2C2C;
+  }
+
+  .chatbot-input input[type="text"] {
+  width: 100%; /* Full width of the chatbot input container */
+  padding: 10px;
+  background-color: #242424; /* Surface Grey for inputs */
+  color: #E0E0E0; /* Primary Text Color */
+  border: 1px solid #383838; /* Divider/Border Color */
+  border-radius: 4px;
+}
+
+.chatbot-input input[type="text"]::placeholder {
+  color: #bbbbbb; /* Slightly lighter placeholder text */
+  font-style: italic; /* Italic for subtle differentiation */
+}
+  
+/* Card & Typography Adjustments */
+h1, h2, .MuiTypography-h6 {
+  font-size: 1.5rem;
+  color: #000000; /* Light text */
+}
+.MuiTypography-h4{
+  color: #ffffff;
+}
+
+/* Typography styling inside the summary card for better readability */
+.summary-card h4 {
+  color: #ffffff !important; /* Keep the heading color bright to stand out */
+  font-weight: bold;
+  margin-bottom: 16px; /* Add spacing below the heading */
+}
+  
+  .table-of-contents {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Accordion summary content (Module title) */
+.MuiAccordionSummary-content {
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Bold title for visibility */
+  font-size: 1.2rem; /* Slightly larger font size */
+  transition: color 0.3s ease; /* Smooth text color transition */
+}
+  
+  .table-of-contents li {
+    margin-bottom: 50px;
+  }
+  
+  .table-of-contents li a {
+    text-decoration: none;
+  color: #3B82F6; /* Primary Accent (Blue) */
+  font-size: 1.5rem;
+  transition: color 0.3s ease; /* Smooth color transition */
+  }
+
+  /* Icon wrapper for expand/collapse */
+.MuiAccordionSummary-expandIconWrapper {
+  color: #f5f5f5; /* Match icon color with text for consistency */
+  transition: transform 0.3s ease; /* Rotate animation */
+}
+
+/* Rotate expand icon when expanded */
+.MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+  transform: rotate(180deg); /* Rotate icon to indicate collapse */
+}
+  
+  .table-of-contents li a:hover {
+    color: #2563EB; /* Dark Blue for Hover */
+  } 
+
+  .summary-card p {
+    color: #d3d3d3 !important; /* Slightly dim the paragraph text for better readability contrast */
+  line-height: 1.6; /* Improve readability with comfortable line height */
+  }
+  
+  .header-bar {
+    width: 65%; /* Match the study window width */
+  background-color: #242424; /* Updated background color for clarity */
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 245;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for separation */
+  border-bottom: 1px solid #383838; /* Subtle divider */
+  }
+
+  /* Enhanced Input Styles */
+.chatbot-input input[type="text"],
+.header-bar input[type="text"] {
+  background-color: #242424; /* Surface Grey for inputs */
+  color: #E0E0E0; /* Primary Text Color */
+  border: 1px solid #383838; /* Divider/Border Color */
+  border-radius: 8px; /* Softer edges */
+  padding: 12px; /* Increased padding */
+  transition: border-color 0.2s ease; /* Smooth border transition */
+}
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    width: 98%;
+  }
+
+  .header-bar .MuiOutlinedInput-root {
+    background-color: #333333; /* Slightly darker input field */
+  color: #E0E0E0; /* Primary Text Color */
+  border: 1px solid #383838; /* Divider/Border Color */
+    border-radius: 4px;
+    flex-grow: 1;
+  }
+
+  .MuiSnackbarContent-root {
+    background-color: #444444; /* Darker grey */
+  color: #E0E0E0;
+  border-radius: 6px; /* Rounded corners */
+  }
+  
+  .header-bar input[type="text"] {
+    width: 80%;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #333333; /* Dark input background */
+  color: #ffffff; /* White text */
+  border-radius: 4px;
+  }
+
+  /* Adjust the border color if needed */
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #ccc; /* Set default border color */
+}
+
+.MuiInputBase-input {
+  color: #ffffff !important; /* Make input text white */
+}
+
+/* Style for EduAI title to be white */
+.eduai-title {
+  color: #ffffff !important; /* Set EduAI title text to white */
+}
+
+/* Style for Module titles to be black */
+.module-title {
+  color: #000000 !important; /* Set Module titles to black */
+}
+
+/* Button inside the module */
+.module-button {
+  background-color: #3B82F6; /* Accent color (blue) */
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+.module-button:hover {
+  background-color: #2563EB; /* Darken color on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Override the background and text color of the Material-UI button */
+.MuiButton-containedPrimary {
+  background-color: #5f73f5 !important; /* Set the button background color to purple */
+  color: #ffffff !important; /* Set the button text color to white */
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #4349a1 !important; /* Darken the purple color slightly on hover */
+}
+
+  .analyze-button {
+    margin-left: 12px;
+  padding: 12px 24px;
+  background-color: #3B82F6; /* Primary Accent (Blue) */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px; /* Softer corners */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+  }
+  
+  .analyze-button:hover {
+    background-color: #2563EB; /* Dark Blue for Hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+  }
+
+  .MuiAlert-standardError {
+    background-color: #EF4444; /* Error Red */
+    color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .MuiAlert-standardSuccess {
+    background-color: #10B981; /* Success Green */
+    color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .header-bar input[type="text"]::placeholder {
+    color: #bbbbbb; /* Slightly lighter placeholder text */
+  }
+
+  .chatbot-input input[type="text"]:focus,
+.header-bar input[type="text"]:focus {
+  border-color: #3B82F6; /* Accent color on focus */
+  outline: none;
+}
+  .header-bar button {
+    padding: 10px 20px;
+    background-color: #5f73f5; /* Accent color for button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .header-bar button:hover {
+    background-color: #4349a1; /* Darker hover color */
+  }
+  /* Add padding*/
+#lesson-plan{
+    padding-top: 0.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+/* Study Section Specific Styling */
+#study-section {
+  padding-left: 5%; /* Consistent left padding */
+  padding-top: 0%;  /* Slight top padding */
+  height: calc(100vh - 80px); /* Ensure content fits within view, accounting for header */
+  overflow: scroll; /* Enable scrolling for the study section */
+  scrollbar-width:none; /* Hide scrollbar for Firefox */
+  margin-right: 34%; /* Avoid overlapping with the right reference window */
+  box-sizing: border-box; /* Ensure padding is included in total width */
+}
+
+  
