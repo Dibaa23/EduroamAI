@@ -50,16 +50,21 @@ def video_to_text(file_name):
     response = model.generate_content([video, "Give me a summary of this video clip. Then, make me a "
                                               "detailed modular lesson plan in the format $1$ topic 1 "
                                               "lesson plan \\n $2$ topic 2 lesson plan \\n."])
-
+    print(response)
     valid_candidate_found = False
 
     for candidate in response.candidates:
         if candidate.finish_reason != 3:
             return candidate.content.parts[0].text
+        else:
+            print("Safety reasons: ", candidate.safety_ratings)
 
     if not valid_candidate_found:
+
         return "No valid content generated due to safety filters."
 
 
-video = Metadata_extraction.download_video("https://www.youtube.com/watch?v=HXJx8j7JpKY", output_folder='videos')
-print(video_to_text(video))
+# video = Metadata_extraction.download_video("https://www.youtube.com/watch?v=HXJx8j7JpKY", output_folder='videos')
+# video_to_text("Tie.mp4")
+
+video_to_text("file_name")
