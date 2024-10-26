@@ -1,7 +1,10 @@
 import os
 import yt_dlp
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bf05aaf102d54f9f00340a3b09a20e4b166dc138
 def download_video(url, output_folder='downloads', output_path='%(title)s.%(ext)s'):
     # Ensure output folder exists
     if not os.path.exists(output_folder):
