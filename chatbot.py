@@ -62,4 +62,4 @@ def video_to_text(file_name):
 
 
 video = Metadata_extraction.download_video("https://www.youtube.com/watch?v=HXJx8j7JpKY", output_folder='videos')
-print(video_to_text('videos/' + video))
+print(video_to_text(video))

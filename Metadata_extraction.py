@@ -1,10 +1,6 @@
 import os
 import yt_dlp
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bf05aaf102d54f9f00340a3b09a20e4b166dc138
 def download_video(url, output_folder='downloads', output_path='%(title)s.%(ext)s'):
     # Ensure output folder exists
     if not os.path.exists(output_folder):
@@ -18,12 +14,25 @@ def download_video(url, output_folder='downloads', output_path='%(title)s.%(ext)
         'outtmpl': full_output_path,
         'merge_output_format': 'mp4',
         'quiet': False,  # Set to True to suppress output
+        # Re-encode to H.264 for video and AAC for audio
+        'postprocessors': [
+            {
+                'key': 'FFmpegVideoConvertor',
+                'preferedformat': 'mp4',  # Convert to .mp4 with compatible codecs
+            },
+            {
+                'key': 'FFmpegMetadata',  # Optional: To add metadata to output file
+            },
+        ],
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         # Extract video information and download the video
         info_dict = ydl.extract_info(url, download=True)
-        # Get the video title
-        video_title = info_dict.get('title', None)
-        return video_title
-
+        # Get the full path of the downloaded video from 'requested_downloads'
+        requested_downloads = info_dict.get('requested_downloads', [])
+        if requested_downloads:
+            video_path = requested_downloads[0]['filepath']
+            return video_path
+        else:
+            raise ValueError("No downloads were found.")
