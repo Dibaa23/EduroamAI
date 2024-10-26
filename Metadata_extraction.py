@@ -17,8 +17,13 @@ def download_video(url, output_folder='downloads', output_path='%(title)s.%(ext)
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
+        # Extract video information and download the video
+        info_dict = ydl.extract_info(url, download=True)
+        # Get the video title
+        video_title = info_dict.get('title', None)
+        return video_title
 
 if __name__ == "__main__":
     video_url = input("Enter the YouTube video URL: ")
-    download_video(video_url)
+    video_name = download_video(video_url)
+    print(f"Downloaded video: {video_name}")
