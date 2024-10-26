@@ -23,3 +23,4 @@ def download_video(url, output_folder='downloads', output_path='%(title)s.%(ext)
         # Get the video title
         video_title = info_dict.get('title', None)
         return video_title
+
