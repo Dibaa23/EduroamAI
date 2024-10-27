@@ -7,28 +7,28 @@ import { useWindowSize } from 'react-use';
 // Sample data for questions
 const sampleQuestions = [
   {
-    question: "What is the capital of France?",
-    options: ["Paris", "London", "Rome", "Berlin"],
-    correctAnswerIndex: 0,
-  },
-  {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Jupiter", "Venus"],
+    question: "What is the main theme of the video \"A World Without... Walls\"?",
+    options: ["The importance of architecture in society", " Imagining a world with no barriers, both physical and metaphorical", "How to construct different types of walls", "The evolution of wall designs through history"],
     correctAnswerIndex: 1,
   },
   {
-    question: "What is the largest ocean on Earth?",
-    options: ["Atlantic", "Indian", "Arctic", "Pacific"],
-    correctAnswerIndex: 3,
-  },
-  {
-    question: "Who wrote 'Hamlet'?",
-    options: ["Charles Dickens", "Leo Tolstoy", "William Shakespeare", "Mark Twain"],
+    question: "What is the purpose of the video clip according to the summary?",
+    options: ["To provide a detailed history of wall construction", "To promote an architectural show", "To encourage viewers to think about life without walls", "To discuss the environmental impact of building materials"],
     correctAnswerIndex: 2,
   },
   {
-    question: "What is the chemical symbol for water?",
-    options: ["O2", "H2O", "CO2", "NaCl"],
+    question: "What type of walls is the video asking viewers to imagine living without?",
+    options: ["Only literal, physical walls", "Only metaphorical, emotional walls", "Both literal and metaphorical walls", "Walls in ancient buildings"],
+    correctAnswerIndex: 3,
+  },
+  {
+    question: "What additional information is provided at the end of the video clip?",
+    options: ["Contact information for inquiries", "A list of architectural techniques", "A preview of the next episode", "Instructions for building a house without walls"],
+    correctAnswerIndex: 2,
+  },
+  {
+    question: "What kind of content does the video belong to?",
+    options: ["A documentary series about construction techniques", "A science fiction movie", "A series that explores different hypothetical scenarios", "A tutorial on home improvement"],
     correctAnswerIndex: 1,
   },
 ];

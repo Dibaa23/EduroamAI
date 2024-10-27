@@ -92,6 +92,7 @@
   justify-content: flex-start;
   margin-left: 80px; /* Adjust to position left */
   margin-top: -40px; /* Adjust to raise the bar */
+  margin-left: 300px;
 }
 
 .progress-bar {
@@ -389,6 +390,7 @@
     min-width: 650px;
     max-width: 650px; /* Ensure a fixed maximum width */
     margin-bottom: 20px;
+    margin-left: 200px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   }
 }

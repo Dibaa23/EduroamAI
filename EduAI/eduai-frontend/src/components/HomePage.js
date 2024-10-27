@@ -38,10 +38,14 @@ function HomePage({ onSubmit }) {
     setYoutubeLink(e.target.value);
   };
 
-  const handleSubmit = () => {
-    if (file || isValidYouTubeUrl(youtubeLink)) {
-      onSubmit(file, youtubeLink);
-      navigate('/study', { state: { file, youtubeLink } }); // Navigate to result page with data
+  const handleSubmit = async () => {
+    if (youtubeLink && isValidYouTubeUrl(youtubeLink)) {
+      try {
+        await onSubmit(youtubeLink); // Await the analysis to complete before navigating
+        navigate('/study'); // Navigate to result page with data
+      } catch (error) {
+        console.error('Error during submission:', error);
+      }
     }
   };
 
@@ -141,14 +145,6 @@ function HomePage({ onSubmit }) {
               }}
               style={{ width: '1000px', marginTop: '-125px' }}
             />
-            {fileName && (
-              <Typography
-                variant="body2"
-                sx={{ color: '#ffffff', marginTop: '8px' }}
-              >
-                Uploaded file: {fileName}
-              </Typography>
-            )}
           </div>
         </div>
 

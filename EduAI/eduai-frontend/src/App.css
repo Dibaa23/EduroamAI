@@ -112,6 +112,7 @@ button:active::after {
     height: 100vh;
     padding-top: 60px;
     overflow-y: hidden; /* Prevent main container scroll */
+    margin-right: 18%;
   }
 
   /* Card style for the summary */

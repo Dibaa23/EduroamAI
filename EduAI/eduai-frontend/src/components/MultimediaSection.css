@@ -1,0 +1,68 @@
+/* MultimediaSection.css */
+
+/* Container for the video list */
+.video-list {
+    padding: 10px; /* Reduced padding */
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    width: 100%; /* Maintain full width of the container */
+    height: 100%; /* Maintain full height of the container */
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+  }
+  
+  /* Title of the section */
+  .section-title {
+    font-size: 1rem; /* Reduced font size to half */
+    margin-bottom: 10px; /* Reduced bottom margin */
+    color: #ffffff;
+    margin-right: auto; /* Align title to the left */
+  }
+  
+  /* Video item as a list */
+  .video-item {
+    list-style-type: none;
+    margin-bottom: 10px; /* Reduced bottom margin */
+    margin-right: auto; /* Align video items to the left */
+    width: 100%; /* Maintain full width */
+    max-width: 400px; /* Reduced max width */
+  }
+  
+  /* Video link styling */
+  .video-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: #2b2b2b;
+    padding: 5px; /* Reduced padding */
+    border-radius: 4px; /* Reduced border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%; /* Maintain full width */
+    max-width: 400px; /* Reduced max width */
+    margin-right: auto; /* Align each video item to the left */
+  }
+  
+  /* Hover effect for video link */
+  .video-link:hover {
+    transform: translateY(-2.5px); /* Reduced hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Reduced shadow on hover */
+  }
+  
+  /* Video thumbnail */
+  .video-thumbnail {
+    width: 80px; /* Reduced width to half */
+    height: 60px; /* Reduced height to half */
+    object-fit: cover;
+    margin-right: 10px; /* Reduced margin */
+    border-radius: 2.5px; /* Reduced border radius */
+  }
+  
+  /* Title of the video */
+  .video-title {
+    font-size: 0.6rem; /* Reduced font size */
+    color: #ffffff;
+    overflow-wrap: break-word;
+    flex-grow: 1; /* Maintain flexibility */
+  }
+  
