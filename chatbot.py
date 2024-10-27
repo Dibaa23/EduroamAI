@@ -4,6 +4,7 @@ import anthropic
 import time
 import warnings
 from googleapiclient.discovery import build
+import Downloads.Metadata_extraction as meta
 
 client = anthropic.Anthropic(
     api_key=os.environ['ANTHROPIC'],
@@ -57,8 +58,8 @@ def response_to_text(response):
 def video_to_text(file_name):
     prompts = ["Give me a summary of this video clip",
 
-               "Make me a detailed modular lesson plan in the format $1$ topic 1 \\n $(1)$ subtopic 1 "
-               "\\n $(2)$ subtopic 2 \\n $2$ topic 2 \\n $(1)$ subtopic 1 etc.",
+               "Based on the video, make me a detailed modular lesson plan in the format $1$ topic 1 "
+               "\\n $(1)$ subtopic 1 \\n $(2)$ subtopic 2 \\n $2$ topic 2 \\n $(1)$ subtopic 1 etc.",
 
                "Make me a 4 choice multiple choice question and answer pair based on the video. The "
                "question has to be in the following format: Answer: [answer letter] Question: "
@@ -130,4 +131,5 @@ def recommend(prompt):
     return vids
 
 
-print(recommend('Python programming tutorial'))
+def link_to_text(link):
+    return video_to_text(meta.download_youtube_video("https://www.youtube.com/watch?v=N_uOtAkEf6U"))
