@@ -45,14 +45,17 @@ warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL 1.1.
 def response_to_text(response):
     valid_candidate_found = False
 
+    safety_rating = []
+
     for candidate in response.candidates:
         if candidate.finish_reason != 3:
             return candidate.content.parts[0].text
         else:
-            print("Safety reasons: ", candidate.safety_ratings)
+            safety_rating = candidate.safety_ratings
 
     if not valid_candidate_found:
-        return "No valid content generated due to safety filters."
+        return ("No valid content generated due to safety filters. \\n "
+                "Safety reasons: \\n" + str(safety_rating))
 
 
 def video_to_text(file_name):
@@ -132,4 +135,7 @@ def recommend(prompt):
 
 
 def link_to_text(link):
-    return video_to_text(meta.download_youtube_video("https://www.youtube.com/watch?v=N_uOtAkEf6U"))
+    return video_to_text(meta.download_youtube_video(link))
+
+
+print(link_to_text("https://www.youtube.com/watch?v=N_uOtAkEf6U"))
