@@ -9,6 +9,67 @@ This project is EduRoam, an application that will take videos for you and create
 
 ---
 
+## Project Setup
+
+This project is a React application that includes routing, video playback, chatbot functionality, and UI components built with Material UI. Follow the instructions below to set up the project and install the necessary dependencies.
+
+### Prerequisites
+Ensure you have the following installed before proceeding:
+- **Node.js** (v14 or later)
+- **npm** (v6 or later)
+
+### Installation Instructions
+
+#### Clone the Repository
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
+
+#### Install Dependencies
+Run the following commands to install the necessary npm packages:
+
+```bash
+# React Router for routing
+npm install react-router-dom
+
+# Material UI components and icons
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
+
+# React (if not already installed)
+npm install react react-dom
+
+# Optional: React Player (if used for VideoPlayer component)
+npm install react-player
+```
+
+### Running the Application
+To start the development server, run:
+```bash
+npm start
+```
+The application will be available at [http://localhost:3000](http://localhost:3000).
+
+### Project Overview
+This project contains several components:
+- **HomePage:** The initial landing page for uploading video files or submitting YouTube links.
+- **TableOfContents:** Displays a table of contents for easy navigation.
+- **VideoPlayer:** Plays the uploaded video or YouTube link.
+- **Chatbot:** A chatbot to interact with users.
+- **StudySection, TestingSection, MultimediaSection:** Additional sections for study materials, quizzes, and multimedia recommendations.
+
+### Usage
+When the application starts, you will land on the **HomePage** where you can either upload a video file or provide a YouTube link.  
+Once submitted, you will be redirected to the main page where additional features are available, including a video player, chatbot, and other sections.
+
+### Additional Information
+- **Material UI:** The project makes use of Material UI components for consistent UI/UX.
+- **React Router:** Navigation within the app is handled using React Router.
+
+
+---
+
 ## Prerequisites  
 Make sure you have the following before proceeding:  
 - **Python 3.7 or higher:** Required for running the chatbot and its dependencies.  
