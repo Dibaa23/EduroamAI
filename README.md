@@ -109,3 +109,33 @@ deactivate
 - **Running the Chatbot:** Activate the virtual environment and execute the Python script to start the chatbot.  
 
 ---
+
+
+## Dependencies for Video Downloader Script
+
+To run the YouTube video downloader script successfully, you will need to install the following dependencies:
+
+### NPM Installations  
+**None:** This script does not require any npm packages since it is written in Python.
+
+### Python Installations  
+- **yt-dlp:** You need this library to download YouTube videos.  
+  ```bash
+  pip install yt-dlp
+  ```
+
+- **ffmpeg:** You need to have ffmpeg installed to remove metadata from the downloaded video.  
+
+  - **On macOS:**  
+    ```bash
+    brew install ffmpeg
+    ```
+
+  - **On Windows or Linux:**  
+    Download it from [FFmpeg's official website](https://ffmpeg.org) and add it to your system PATH.
+
+### Additional Notes  
+The script uses built-in Python libraries such as `os`, `platform`, `shlex`, and `subprocess`, so no additional installation is required for these.
+
+Make sure that all dependencies are correctly installed before running the script.
+
