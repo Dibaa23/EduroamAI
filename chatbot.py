@@ -1,42 +1,45 @@
-# import anthropic
+# from openai import OpenAI
+import anthropic
 import time
 import warnings
 
-# client = anthropic.Anthropic(
-# defaults to os.environ.get("ANTHROPIC_API_KEY")
-# api_key=ANTHROPIC,
-# )
-# message = client.messages.create(
-#    model="claude-3-5-sonnet-20246020",
-#    max_tokens=1024,
-#    messages=[
-#        {"role": "user", "content": "Hello, Claude"}
-#    ]
-# )
-# print(message.content)
 
-from openai import OpenAI
+client = anthropic.Anthropic(
+api_key="",
+)
+
+def chat(input):
+    message = client.messages.create(
+    model="claude-3-5-sonnet-20241022",
+    max_tokens=1024,
+    messages=[
+        {"role": "user", "content": input}
+    ]
+    )
+    return message.content[0].text
+
+# from openai import OpenAI
 import google.generativeai as genai
 import os
 
-client = OpenAI()
+# client = OpenAI()
 
 
-def chat(input_text):
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a tutor trying to educate the user"},
-            {
-                "role": "user",
-                "content": input_text
-            }
-        ]
-    )
-    return completion.choices[0].message.content
+# def chat(input_text):
+#     completion = client.chat.completions.create(
+#         model="gpt-4o-mini",
+#         messages=[
+#             {"role": "system", "content": "You are a tutor trying to educate the user"},
+#             {
+#                 "role": "user",
+#                 "content": input_text
+#             }
+#         ]
+#     )
+#     return completion.choices[0].message.content
 
 
-warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL 1.1.1+")
+# warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL 1.1.1+")
 
 
 def response_to_text(response):
@@ -111,5 +114,7 @@ def video_to_text(file_name):
     return summary, lesson_plan, mcq
 
 
-response = video_to_text("Tie.mp4")
-print(response[0] + '\n' + response[1] + '\n' + str(response[2]))
+# response = video_to_text("Tie.mp4")
+# print(response[0] + '\n' + response[1] + '\n' + str(response[2]))
+
+print(chat("Hi Claude! can you connect to the internet and give me youtube video recomendations for algorithms?"))
