@@ -1,11 +1,11 @@
 **AIATL 2025**  
 
-### Chatbot Python Setup README  
+### EduAI Setup 
 
 ---
 
 ## Overview  
-This repository contains a chatbot project implemented using a Python script (`Chatbot_server.py`). The following guide provides a step-by-step process to set up the Python environment for the chatbot. The chatbot interacts with the Anthropics Claude model, manages environment variables, and makes HTTP requests.  
+This project is EduRoam, an application tha will take videos for you and create a study plan from them such as a summary, a lesson plan, a quiz, and reccomendations for further learning! This README specifically goes over how to set the chatbot up and how to set up the env for Anthropic's Claude and Google's Gemini
 
 ---
 
