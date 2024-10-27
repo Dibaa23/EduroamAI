@@ -1,0 +1,146 @@
+/* Disable scrolling for the homepage */
+html, body {
+    overflow: hidden; /* Hide scrollbar */
+    height: 100%; /* Ensure content takes up full height */
+    margin: 0; /* Remove any default margin */
+    padding: 0;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+    flex-direction: column;
+    overflow: hidden; /* Hide scrollbar within this container */
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 2vw; /* Use viewport-based units for padding */
+    color: #E0E0E0;
+    min-height: 100vh; /* Ensure the container takes the full height */
+    padding-top: 5%; /* Add some top padding for better appearance */
+    box-sizing: border-box;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%; /* Make it a percentage for scaling */
+    max-width: 1000px; /* Allow it to scale up to 1000px */
+    padding: 2vh 2vw; /* Add some padding for better appearance */
+    padding: 2vh 2vw; /* Add some padding for better appearance */
+    margin-bottom: -100px; /* Added bottom margin to separate from the carousel */
+}
+
+.scale-wrapper {
+    transform: scale(0.85); /* Scale down the entire content to 85% */
+    transform-origin: top center; /* Adjust where the scaling is centered */
+}  
+
+/* Customize the slick dots */
+.slick-dots li button:before {
+    font-family: 'slick';
+    font-size: 6px; /* Adjust the size of the dots */
+    line-height: 20px;
+    position: absolute;
+    top: 50px; /* Add top padding */
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: 0.5; /* Adjust opacity if needed */
+    color: #ffffff; /* Set dot color to white */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make the active dot more visible */
+.slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: #ffffff; /* Keep active dot white */
+}
+
+/* Adjust the carousel's overall dimensions for smaller viewports */
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 90%; /* Increase width for smaller screens */    
+    }
+    .slick-slide {
+        width: 200px !important; /* Smaller slide width for mobile */
+    }
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 5vh; /* Use viewport-based units */
+}
+
+.hero-section h1 {
+    font-size: 5vw; /* Dynamic scaling with viewport width */
+    color: #ffffff;
+    margin-top: 5vh; /* Adjust margin for better positioning */
+}
+
+.hero-section p {
+    font-size: 2vw; /* Dynamic scaling with viewport width */
+    color: #d3d3d3;
+    margin-top: 2vh; /* Slight top margin */
+}
+
+.file-input,
+.link-input {
+    margin: 2vh 0; /* Use viewport-based margins */
+}
+
+.submit-button {
+    padding: 1.5vh 2vw; /* Scale button with viewport */
+    background-color: #2563EB;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.5rem;
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.link-input {
+    border-radius: 24px;
+    padding: 1vh 2vw; /* Use viewport units for padding */
+}
+
+.carousel-container {
+    width: 90vw !important; /* Use 90% of the viewport width */
+    margin: 30px auto !important; /* Center the carousel with auto margins */
+    max-width: none !important; /* Remove max-width to let it span more */
+    overflow: hidden !important; /* Hide overflow to avoid content spill */
+    padding-left: 2vw !important; /* Add padding to the left */
+    padding-right: 2vw !important; /* Add padding to the right */
+    margin-top: 20px !important; /* Adjust top margin to move it closer to the input */
+    margin-bottom: -100px !important; /* Adjust top margin to move it closer to the input */
+}
+
+/* Adjust the slick track itself */
+.slick-track {
+    margin-left: auto !important; /* Center the track */
+    margin-right: auto !important;
+    padding-left: 10px !important; /* Padding inside the track */
+    padding-right: 10px !important; /* Padding inside the track */
+}
+
+/* Make sure the images fit well within their containers */
+.slick-slide img {
+    width: 180px !important; /* Set a more rectangular aspect ratio */
+    height: 100px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important; /* Slightly rounded corners */
+    margin: 0 15px !important; /* Ensure consistent spacing between images */
+    display: block !important;
+}
+
+

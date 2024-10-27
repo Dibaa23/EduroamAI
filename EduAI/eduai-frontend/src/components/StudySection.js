@@ -19,9 +19,6 @@ const StudySection = () => {
 
       {/* Lesson Plan Section */}
       <div id="lesson-plan">
-        <Typography variant="h4" gutterBottom style={{ marginTop: '20px' }}>
-          Lesson Plan
-        </Typography>
 
         {/* Module 1 */}
         <Accordion>
