@@ -149,7 +149,7 @@ GEMINI_API_KEY=google-gemini-api-key-here
 ### Step 4: Run the Python Script  
 Ensure your virtual environment is activated and run the chatbot script:  
 ```bash
-python Chatbot_server.py
+python Chatbot.py
 ```
 
 Provide the required inputs correctly, as the chatbot relies on them for generating responses.
