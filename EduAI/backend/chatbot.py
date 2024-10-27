@@ -90,8 +90,9 @@ def video_to_text():
     try:
         prompts = [
             "Give me a summary of this video clip",
-            "Based on the video, make me a detailed modular lesson plan in the format $1$ topic 1 "
-            "\n $(1)$ subtopic 1 \n $(2)$ subtopic 2 \n $2$ topic 2 \n $(1)$ subtopic 1 etc.",
+            "Based on the video, make me a detailed modular lesson plan in the format $$ topic 1 "
+            "\\n $1) subtopic 1 \\n $2) subtopic 2 \\n $$ topic 2 \\n $1)$ subtopic 1 etc."
+            " Make sure to do it in that exact format and DO NOT add formatting.",
             "Make me a 4 choice multiple choice question and answer pair based on the video. The "
             "question has to be in the following format: Answer: [answer letter] Question: "
             "[question]. DO NOT add formatting. The question or a similar question MUST NOT be in "
@@ -108,7 +109,7 @@ def video_to_text():
             video = genai.get_file(video.name)
             attempts += 1
         if video.state.name not in ["SUCCEEDED", "ACTIVE"]:
-            return jsonify({"error": "Processing failed or timed out"}), 500
+            raise Exception
         model = genai.GenerativeModel("gemini-1.5-flash")
         # Generate responses
         summary = response_to_text(model.generate_content([video, prompts[0]]))
@@ -123,7 +124,67 @@ def video_to_text():
             "multiple_choice_questions": mcq
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return process_with_youtube_metadata(link, prompts)
+
+def process_with_youtube_metadata(link, prompts):
+    """Use YouTube metadata as fallback input to the Gemini model."""
+    try:
+        # Extract the video ID from the YouTube link
+        video_id = extract_video_id(link)
+        if not video_id:
+            return jsonify({"error": "Invalid YouTube link"}), 400
+
+        # Use the YouTube Data API to get metadata
+        API_KEY = os.environ["YOUTUBE"]
+        youtube = build("youtube", "v3", developerKey=API_KEY)
+
+        # Fetch video metadata
+        request = youtube.videos().list(
+            part="snippet",
+            id=video_id
+        )
+        response = request.execute()
+
+        # Check if the video data exists
+        if "items" in response and len(response["items"]) > 0:
+            snippet = response["items"][0].get("snippet", {})
+            title = snippet.get("title", "No title available")
+            description = snippet.get("description", "No description available")
+
+            # Use metadata to generate content using the Gemini model
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            metadata_input = f"Title: {title}\nDescription: {description}"
+
+            summary = response_to_text(model.generate_content([metadata_input, prompts[0]]))
+            lesson_plan = response_to_text(model.generate_content([metadata_input, prompts[1]]))
+            print(lesson_plan)
+            mcq = []
+            for i in range(5):
+                question = response_to_text(model.generate_content([metadata_input, prompts[2] + str(mcq)]))
+                mcq.append({"answer": question[8], "question": question[10:]})
+
+            return jsonify({
+                "summary": summary,
+                "lesson_plan": lesson_plan,
+                "multiple_choice_questions": mcq
+            })
+        else:
+            return jsonify({"error": "No video metadata found"}), 404
+    except Exception as e:
+        return jsonify({"error": f"Failed to process with metadata: {str(e)}"}), 500
+
+def extract_video_id(link):
+    """Extract the video ID from a YouTube link."""
+    try:
+        if "v=" in link:
+            return link.split("v=")[1].split("&")[0]
+        elif "youtu.be/" in link:
+            return link.split("youtu.be/")[1].split("?")[0]
+        else:
+            return None
+    except Exception as e:
+        print(f"Error extracting video ID: {e}")
+        return None
 
 
 @app.route('/api/mcq', methods=['POST'])
@@ -164,24 +225,6 @@ def recommend():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# YouTube link to video processing
-@app.route('/api/link-to-text', methods=['POST'])
-def link_to_text():
-    link = request.json.get('link', '')
-
-    if not link:
-        return jsonify({"error": "No YouTube video link provided"}), 400
-
-    try:
-        file_name = meta.download_youtube_video(link)
-        return jsonify({
-            "summary": response[0],
-            "lesson_plan": response[1]
-        })
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == '__main__':

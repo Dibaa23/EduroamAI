@@ -7,8 +7,9 @@ import time
 import warnings
 from googleapiclient.discovery import build
 import Downloads.Metadata_extraction as meta
+from google.cloud import videointelligence
 
-path = '/Users/jc/wp/AIATL/EduroamAI/EduAI/backend/x.mp4'
+path = '/Users/jc/wp/AIATL/EduroamAI/Tie.mp4'
 
 
 # Helper function to parse generative AI response
@@ -23,6 +24,7 @@ def response_to_text(response):
     if not valid_candidate_found:
         return ("No valid content generated due to safety filters. \n "
                 "Safety reasons: \n" + str(safety_rating))
+
 
 def video_to_text(file_name):
     prompts = ["Give me a summary of this video clip",
@@ -49,11 +51,49 @@ def video_to_text(file_name):
         print("Video processing did not reach a usable state. Final state:", video.state.name)
         return "Processing failed or timed out"
 
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-1.5-flash-8b")
 
     print("Generating summary...")
-    summary = response_to_text(model.generate_content([video, prompts[0]]))
+    try:
+        summary = response_to_text(model.generate_content([video, prompts[0]]))
+    except Exception as e:
+        API_KEY = os.environ["YOUTUBE"]
+
+        # Build the YouTube API client
+        youtube = build("youtube", "v3", developerKey=API_KEY)
+
+        # Fetch video metadata using the YouTube Data API
+        request = youtube.videos().list(
+            part="snippet,contentDetails,statistics",
+            id="jpsP0N3FomY"
+        )
+        response = request.execute()
+
+        # Extract metadata from the response
+        if "items" in response and len(response["items"]) > 0:
+            video_info = response["items"][0]
+            snippet = video_info.get("snippet", {})
+            statistics = video_info.get("statistics", {})
+            content_details = video_info.get("contentDetails", {})
+
+            # Display metadata
+            print("Title:", snippet.get("title", "N/A"))
+            print("Description:", snippet.get("description", "N/A"))
+            print("Published At:", snippet.get("publishedAt", "N/A"))
+            print("Channel Title:", snippet.get("channelTitle", "N/A"))
+            print("Tags:", snippet.get("tags", "N/A"))
+            print("View Count:", statistics.get("viewCount", "N/A"))
+            print("Like Count:", statistics.get("likeCount", "N/A"))
+            print("Dislike Count:", statistics.get("dislikeCount", "N/A"))
+            print("Comment Count:", statistics.get("commentCount", "N/A"))
+            print("Duration:", content_details.get("duration", "N/A"))
+            print("Caption Availability:", content_details.get("caption", "N/A"))
+
+        else:
+            print(response)
+        return None
     print("Generating lesson plan...")
+    print(str(video.size_bytes))
     lesson_plan = response_to_text(model.generate_content([video, prompts[1]]))
     print("Generating multiple choice questions...")
     mcq = []
