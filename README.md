@@ -1,125 +1,111 @@
-# EduroamAI
-AIATL 2025
+**AIATL 2025**  
 
-Chatbot Python Setup README
+### Chatbot Python Setup README  
 
+---
 
+## Overview  
+This repository contains a chatbot project implemented using a Python script (`Chatbot_server.py`). The following guide provides a step-by-step process to set up the Python environment for the chatbot. The chatbot interacts with the Anthropics Claude model, manages environment variables, and makes HTTP requests.  
 
+---
 
-Overview
+## Prerequisites  
+Make sure you have the following before proceeding:  
+- **Python 3.7 or higher:** Required for running the chatbot and its dependencies.  
+- **pip:** Python's package manager for installing dependencies.  
 
-This repository contains a chatbot project implemented using a Python script (Chatbot_server.py). This README provides a step-by-step guide to setting up the Python environment for the chatbot. The chatbot relies on several dependencies to interact with the Anthropics Claude model, manage environment variables, and make HTTP requests.
+---
 
-Prerequisites
+## Setting Up the Python Environment  
 
-Before setting up the environment, make sure you have:
+To keep dependencies isolated, it's recommended to create a virtual environment.  
 
-Python 3.7 or higher: You need a recent version of Python to run the chatbot and its dependencies.
-
-pip: Python's package manager for installing dependencies.
-
-Setting Up the Python Environment
-
-To keep dependencies isolated, it's recommended to create a virtual environment.
-
-Step 1: Create a Virtual Environment
-
-Run the following command to create a virtual environment named venv:
-
+### Step 1: Create a Virtual Environment  
+Run the following command:  
+```bash
 python -m venv venv
+```
 
-Step 2: Activate the Virtual Environment
+### Step 2: Activate the Virtual Environment  
+- **On Windows:**  
+   ```bash
+   venv\Scriptsctivate
+   ```
+- **On macOS/Linux:**  
+   ```bash
+   source venv/bin/activate
+   ```
 
-Activate the virtual environment:
+---
 
-On Windows:
+## Python Dependencies  
 
-venv\Scripts\activate
+### Step 3: Install Required Python Packages  
 
-On macOS/Linux:
-
-source venv/bin/activate
-
-Python Dependencies
-
-Below is a list of all the required Python packages for this project, along with the installation commands.
-
-Step 3: Install Required Python Packages
-
-Anthropic API Client
-
-This package is used to interface with the Claude model from Anthropics. It allows the chatbot to communicate and generate meaningful responses based on user input.
-
-Installation Command:
-
+#### **Anthropic API Client**  
+Used to interface with the Claude model, enabling chatbot responses.  
+```bash
 pip install anthropic
+```
 
-Requests (Optional)
-
-This package is used for making HTTP requests. If you need to interact with other APIs or make web requests as part of your chatbot's extended functionality, you should install this package.
-
-Installation Command:
-
+#### **Requests (Optional)**  
+For making HTTP requests, useful when interacting with external APIs.  
+```bash
 pip install requests
+```
 
-Python Dotenv (Optional)
-
-This package helps manage environment variables by allowing you to load them from a .env file. It is useful for keeping API keys and other sensitive information secure.
-
-Installation Command:
-
+#### **Python Dotenv (Optional)**  
+Manages environment variables from a `.env` file, securing API keys and sensitive information.  
+```bash
 pip install python-dotenv
+```
 
-Google Generative AI Client (Gemini)
-
-This package is used to interface with Google's generative AI models (such as Gemini). It allows the chatbot to generate content based on YouTube videos and other input.
-
-Installation Command:
-
+#### **Google Generative AI Client (Gemini)**  
+Used to interact with Google’s generative AI models. Supports generating content from YouTube and other inputs.  
+```bash
 pip install google-generativeai
+```
 
-YouTube Data API Client (Optional)
-
-This package is used to interact with YouTube, allowing the chatbot to fetch video information and process YouTube content.
-
-Installation Command:
-
+#### **YouTube Data API Client (Optional)**  
+Fetches and processes YouTube video information.  
+```bash
 pip install google-api-python-client
+```
 
-Creating the .env File
+---
 
-If you are using the python-dotenv package to manage environment variables, create a .env file in the root directory of your project. This file should contain the API keys for the Anthropics Claude model and Google Generative AI:
-
-ANTHROPIC_API_KEY=sk-ant-api-key-here
+## Creating the `.env` File  
+If you’re using `python-dotenv` to manage environment variables, create a `.env` file in the root directory. It should contain your API keys:  
+```env
+ANTHROPIC_API_KEY=sk-ant-api-key-here  
 GEMINI_API_KEY=google-gemini-api-key-here
+```
+> Replace `sk-ant-api-key-here` and `google-gemini-api-key-here` with your actual API keys.
 
-Replace sk-ant-api-key-here and google-gemini-api-key-here with your actual API keys.
+---
 
-Running the Chatbot
+## Running the Chatbot  
 
-Once the environment is set up and dependencies are installed, you can run the chatbot script.
-
-Step 4: Run the Python Script
-
-Make sure your virtual environment is activated and run the script using:
-
+### Step 4: Run the Python Script  
+Ensure your virtual environment is activated and run the chatbot script:  
+```bash
 python Chatbot_server.py
+```
 
-Ensure that all necessary inputs are provided correctly, as the chatbot relies on user input to generate responses.
+Provide the required inputs correctly, as the chatbot relies on them for generating responses.
 
-Deactivating the Virtual Environment
-
-When you're done, deactivate the virtual environment by running:
-
+### Deactivating the Virtual Environment  
+When done, deactivate the virtual environment by running:  
+```bash
 deactivate
+```
 
-Summary
+---
 
-Virtual Environment Setup: Use venv to create and activate a virtual environment.
+## Summary  
+- **Virtual Environment Setup:** Use `venv` to create and activate an isolated environment.  
+- **Dependencies:** Install `anthropic`, `requests`, `python-dotenv`, `google-generativeai`, and `google-api-python-client` as needed.  
+- **Environment Variables:** Use a `.env` file to securely store API keys.  
+- **Running the Chatbot:** Activate the virtual environment and execute the Python script to start the chatbot.  
 
-Dependencies: Install anthropic, requests, python-dotenv, google-generativeai, and google-api-python-client as needed for the chatbot.
-
-Environment Variables: Use a .env file to manage sensitive information such as API keys.
-
-Running the Chatbot: Activate the virtual environment and execute the Python script to run the chatbot.
-
+---
