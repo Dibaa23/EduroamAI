@@ -1,3 +1,4 @@
+// App.js
 import React, { useState } from 'react';
 import './App.css';
 import TableOfContents from './components/TableOfContents'; // Left column
@@ -9,6 +10,7 @@ import MultimediaSection from './components/MultimediaSection'; // Multimedia Se
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { IconButton, InputAdornment, TextField, Snackbar, Alert } from '@mui/material';
 import UploadIcon from '@mui/icons-material/UploadFile';
+import axios from 'axios'; // Import axios
 
 // Function to validate YouTube URLs
 const isValidYouTubeUrl = (url) => {
@@ -22,36 +24,46 @@ const App = () => {
   const [error, setError] = useState(''); // State to track errors
   const [openError, setOpenError] = useState(false); // State to handle Snackbar visibility
 
+  // New states for summary and lesson plan
+  const [summary, setSummary] = useState('');
+  const [lessonPlan, setLessonPlan] = useState('');
+  const [loading, setLoading] = useState(false); // State to handle loading
+
   // Function to handle input change
   const handleInputChange = (event) => {
     setInputUrl(event.target.value);
   };
 
-  // Function to handle button click to load the video
-  const handleAnalyzeClick = () => {
+  // Function to handle button click to load the video and get data
+  const handleAnalyzeClick = async () => {
     if (inputUrl) {
       if (isValidYouTubeUrl(inputUrl)) {
-        setVideoUrl(inputUrl); // Update the video URL
-        setInputUrl(''); // Clear the input field
-        setError(''); // Clear any existing error
+        try {
+          setLoading(true); // Start loading
+          // Send POST request to the backend
+          const response = await axios.post('http://localhost:5000/api/video-to-text', {
+            link: inputUrl,
+          });
+
+          // Destructure the response data
+          const { summary, lesson_plan } = response.data;
+
+          // Update the state with received data
+          setSummary(summary);
+          setLessonPlan(lesson_plan);
+
+          setVideoUrl(inputUrl); // Update the video URL
+          setInputUrl(''); // Clear the input field
+          setError(''); // Clear any existing error
+        } catch (error) {
+          console.error('Error during analysis:', error);
+          setError('Error analyzing the video.');
+          setOpenError(true); // Show the error Snackbar
+        } finally {
+          setLoading(false); // Stop loading
+        }
       } else {
         setError('Invalid YouTube video link');
-        setOpenError(true); // Show the error Snackbar
-      }
-    }
-  };
-
-  // Function to handle file upload
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const validVideoTypes = ['video/mp4', 'video/webm', 'video/ogg'];
-      if (validVideoTypes.includes(file.type)) {
-        const fileUrl = URL.createObjectURL(file); // Create a URL for the uploaded file
-        setVideoUrl(fileUrl); // Update the video URL with the file's URL
-        setError(''); // Clear any existing error
-      } else {
-        setError('Invalid file type. Please upload a valid video file.');
         setOpenError(true); // Show the error Snackbar
       }
     }
@@ -84,7 +96,7 @@ const App = () => {
                       type="file"
                       accept="video/*"
                       style={{ display: 'none' }}
-                      onChange={handleFileUpload}
+                      // Implement file upload handling if needed
                     />
                   </IconButton>
                 </InputAdornment>
@@ -110,7 +122,9 @@ const App = () => {
             }}
           />
           {/* Analyze Button */}
-          <button onClick={handleAnalyzeClick} className="analyze-button">Analyze</button>
+          <button onClick={handleAnalyzeClick} className="analyze-button">
+            {loading ? 'Analyzing...' : 'Analyze'}
+          </button>
         </div>
       </div>
 
@@ -145,8 +159,14 @@ const App = () => {
 
         {/* Routes to Different Sections */}
         <Routes>
-          <Route path="/" element={<StudySection />} />
-          <Route path="/study" element={<StudySection />} />
+          <Route
+            path="/"
+            element={<StudySection summary={summary} lessonPlan={lessonPlan} loading={loading} />}
+          />
+          <Route
+            path="/study"
+            element={<StudySection summary={summary} lessonPlan={lessonPlan} loading={loading} />}
+          />
           <Route path="/testing" element={<TestingSection />} />
           <Route path="/multimedia" element={<MultimediaSection />} />
         </Routes>
