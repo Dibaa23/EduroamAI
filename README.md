@@ -11,7 +11,6 @@ This project is EduRoam, an application that will take videos for you and create
 
 ## Project Setup
 
-This project is a React application that includes routing, video playback, chatbot functionality, and UI components built with Material UI. Follow the instructions below to set up the project and install the necessary dependencies.
 
 ### Prerequisites
 Ensure you have the following installed before proceeding:
