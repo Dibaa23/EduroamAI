@@ -5,7 +5,7 @@
 ---
 
 ## Overview  
-This project is EduRoam, an application that will take videos for you and create a study plan from them such as a summary, a lesson plan, a quiz, and reccomendations for further learning! This README specifically goes over how to set the chatbot up and how to set up the env for Anthropic's Claude and Google's Gemini
+This project is EduRoam, an application that will take videos for you and create a study plan from them such as a summary, a lesson plan, a quiz, and reccomendations for further learning! This README specifically goes over how to set the chatbot up and how to set up the env for Anthropic's Claude and Google's Gemini!
 
 ---
 
